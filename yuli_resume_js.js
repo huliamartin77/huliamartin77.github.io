@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (guineaPigButton) {
         guineaPigButton.addEventListener('click', function() {
             guineaPigButton.classList.add('animate-button');
-            guineaPigButton.innerHTML = 'Wheek Wheek!'; // Change the button text
+            guineaPigButton.innerHTML = 'Wheek Wheek!';
 
             setTimeout(function() {
                 guineaPigButton.classList.remove('animate-button');
