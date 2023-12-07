@@ -46,6 +46,7 @@ a {
 }
 
 .guinea-pig-icon {
+    position: relative;
     background: linear-gradient(to bottom, #43B3AE, #009688);
     color: white;
     border: none;
@@ -54,6 +55,12 @@ a {
     font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .guinea-pig-icon.clicked:hover {
