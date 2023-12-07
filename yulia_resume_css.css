@@ -63,6 +63,16 @@ a {
     text-align: center;
 }
 
+.guinea-pig-icon img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.button-text {
+    z-index: 1;
+}
+
 .guinea-pig-icon.clicked:hover {
     background-color: #43B3AE;
     transform: scale(1.05);
