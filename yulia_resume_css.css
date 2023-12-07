@@ -38,18 +38,26 @@ a {
     color: #FF69B4;
 }
 
-.guinea-pig-icon {
-    width: 25px;
-    height: 25px;
-    animation: hop 1s infinite alternate;
-    margin-bottom: 70px;
+.guinea-pig-icon.clicked {
+    border: 5px solid #43B3AE;
+    padding: 4px 9px;
+    box-shadow: 0 0 15px #43B3AE; 
+    animation: buttonAnimation 0.5s ease-in-out; /* Apply the keyframes animation */
 }
 
-@keyframes hop {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-20px);
-    }
+.guinea-pig-icon {
+    background: linear-gradient(to bottom, #43B3AE, #009688);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 20px 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.guinea-pig-icon.clicked:hover {
+    background-color: #43B3AE;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #43B3AE;
 }
