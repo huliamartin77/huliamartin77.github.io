@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (guineaPigButton) {
         guineaPigButton.addEventListener('click', function () {
+            openInstagram();
+            
             // Add animation and change button text
             guineaPigButton.classList.add('animate-button');
             guineaPigButton.innerHTML = 'Wheek Wheek! 🎉';
@@ -11,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Play sound and launch confetti
             playSound();
             launchConfetti();
-            openInstagram();
+            
 
             // Revert button state after 1.5 seconds
             setTimeout(function () {
