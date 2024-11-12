@@ -1,15 +1,18 @@
+
 document.addEventListener('DOMContentLoaded', function () {
-    var guineaPigButton = document.getElementById('guineaPigButton');
+    const guineaPigButton = document.getElementById('guineaPigButton');
 
     if (guineaPigButton) {
         guineaPigButton.addEventListener('click', function () {
+            // Add animation and change button text
             guineaPigButton.classList.add('animate-button');
             guineaPigButton.innerHTML = 'Wheek Wheek! 🎉';
 
+            // Play sound and launch confetti
             playSound();
-
             launchConfetti();
 
+            // Revert button state after 1.5 seconds
             setTimeout(function () {
                 guineaPigButton.classList.remove('animate-button');
                 guineaPigButton.innerHTML = `
@@ -22,10 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 1500);
         });
     }
+
+    // Check if the browser is Chrome
     function isChrome() {
         return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
     }
 
+    // Confetti animation
     function launchConfetti() {
         const confettiCount = 100;
         const confettiColors = ['#ff9f1c', '#2ec4b6', '#e71d36', '#ffbf69', '#8d99ae'];
@@ -39,11 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
             confetti.style.left = `${Math.random() * 100}%`;
             confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
 
+            // Remove confetti after 5 seconds
             setTimeout(() => confetti.remove(), 5000);
         }
     }
+
+    // Play the custom sound effect
     function playSound() {
-        const audio = new Audio('https://www.soundjay.com/button/sounds/button-20.mp3');
+        // Replace the URL with your custom sound file path
+        const audio = new Audio('ESGuinea20Pig205_3new-sound.aif');
         audio.play();
     }
 });
