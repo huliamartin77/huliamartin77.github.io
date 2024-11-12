@@ -58,36 +58,36 @@ a:hover {
     color: #1D4ED8; /* Darker blue on hover */
 }
 
-/* Button Styling */
 .guinea-pig-icon {
     position: relative;
-    background: linear-gradient(135deg, #E879F9, #F97316); /* Updated gradient for button */
+    background: linear-gradient(135deg, #D1C4E9, #B3E5FC); /* Soft lavender to pastel blue */
     color: #fff;
     border: none;
     border-radius: 50px;
     padding: 20px 50px;
     font-size: 22px;
     cursor: pointer;
-    transition: background-color 0.4s, transform 0.3s ease-in-out, box-shadow 0.4s;
-    overflow: hidden;
+    transition: background-color 0.5s, transform 0.3s ease-in-out, box-shadow 0.5s;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 15px 30px rgba(249, 115, 22, 0.3), inset 0 0 20px rgba(232, 121, 249, 0.4);
+    box-shadow: 0 15px 30px rgba(179, 229, 252, 0.3), inset 0 0 20px rgba(209, 196, 233, 0.5);
 }
 
 .guinea-pig-icon:hover {
-    background: linear-gradient(135deg, #F97316, #10B981); /* Tangerine to Emerald on hover */
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.5), inset 0 0 30px rgba(249, 115, 22, 0.5);
+    background: linear-gradient(135deg, #B39DDB, #80DEEA); /* Lavender to soft teal on hover */
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 25px 50px rgba(179, 157, 219, 0.6), inset 0 0 40px rgba(128, 222, 234, 0.5);
 }
 
 .guinea-pig-icon.clicked {
-    border: 3px solid #10B981; /* Emerald border on click */
+    border: 3px solid #80DEEA; /* Soft teal border on click */
     padding: 18px 48px;
     animation: buttonBounce 0.6s ease-out;
+    background: linear-gradient(135deg, #CE93D8, #81D4FA); /* Pastel pink to soft blue */
+    box-shadow: 0 20px 40px rgba(129, 212, 250, 0.5), inset 0 0 30px rgba(206, 147, 216, 0.6);
 }
 
 /* Button Bounce Animation */
@@ -99,24 +99,62 @@ a:hover {
 /* Sparkle Effect */
 .sparkle {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #FFD700; /* Gold sparkle */
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #FFD700, #FFEC8B); /* Gold gradient for a metallic shine */
     border-radius: 50%;
-    animation: sparkle 1.5s infinite ease-in-out;
+    animation: sparkle 2s infinite ease-in-out, float 3s ease-in-out infinite;
     pointer-events: none;
+    filter: drop-shadow(0 0 6px rgba(255, 223, 0, 0.8)); /* Glowing effect */
+    opacity: 0.8;
 }
 
 @keyframes sparkle {
-    0%, 100% { opacity: 0.7; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.3); }
+    0%, 100% {
+        transform: scale(0.9) rotate(0deg);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.2) rotate(45deg);
+        opacity: 1;
+    }
 }
 
-/* Image Inside Button */
+/* Floating animation for subtle movement */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(-5px);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+.guinea-pig-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    position: relative;
+    background: linear-gradient(135deg, #E879F9, #F97316);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 20px 50px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: background-color 0.4s, transform 0.3s ease-in-out, box-shadow 0.4s;
+    overflow: hidden;
+}
+
 .guinea-pig-icon img {
-    max-width: 50%;
+    max-width: 80px; /* Set a fixed max-width */
+    max-height: 80px; /* Set a fixed max-height */
+    width: auto;
     height: auto;
     display: block;
+    margin: 0 auto; /* Centers the image horizontally */
+    object-fit: contain; /* Ensures the image scales properly */
 }
 
 .button-text {
