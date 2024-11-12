@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Play the custom sound effect
     function playSound() {
-        // Replace the URL with your custom sound file path
         const audio = new Audio('ESGuinea20Pig205_3new-sound.aif');
         audio.play();
     }
