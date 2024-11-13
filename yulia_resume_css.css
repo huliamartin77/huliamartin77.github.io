@@ -99,34 +99,35 @@ a:hover {
 /* Sparkle Effect */
 .sparkle {
     position: absolute;
-    width: 12px;
-    height: 12px;
-    background: radial-gradient(circle, #FFD700, #FFEC8B); /* Gold gradient for a metallic shine */
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #FFFFFF, #E0F7FA); /* Soft white-blue gradient for snow effect */
     border-radius: 50%;
-    animation: sparkle 2s infinite ease-in-out, float 3s ease-in-out infinite;
+    animation: snowFall 8s linear infinite, sway 4s ease-in-out infinite;
     pointer-events: none;
-    filter: drop-shadow(0 0 6px rgba(255, 223, 0, 0.8)); /* Glowing effect */
+    filter: drop-shadow(0 0 6px rgba(240, 248, 255, 0.6)); /* Soft glowing effect */
     opacity: 0.8;
 }
 
-@keyframes sparkle {
-    0%, 100% {
-        transform: scale(0.9) rotate(0deg);
-        opacity: 0.6;
+/* Falling animation to simulate snowflakes */
+@keyframes snowFall {
+    0% {
+        transform: translateY(-10vh) translateX(0);
+        opacity: 0.8;
     }
-    50% {
-        transform: scale(1.2) rotate(45deg);
-        opacity: 1;
+    100% {
+        transform: translateY(110vh) translateX(calc(20vw * (random() - 0.5)));
+        opacity: 0.5;
     }
 }
 
-/* Floating animation for subtle movement */
-@keyframes float {
+/* Gentle swaying effect for drifting snowflakes */
+@keyframes sway {
     0%, 100% {
-        transform: translateY(-5px);
+        transform: translateX(-5px);
     }
     50% {
-        transform: translateY(5px);
+        transform: translateX(5px);
     }
 }
 
@@ -137,7 +138,7 @@ a:hover {
     justify-content: center; /* Center content vertically */
     position: relative;
     background: linear-gradient(135deg, #E879F9, #F97316);
-    color: #fff;
+    color: #ffffff;
     border: none;
     border-radius: 50px;
     padding: 20px 50px;
@@ -159,25 +160,49 @@ a:hover {
 
 .button-text {
     z-index: 1;
-    transition: opacity 0.3s;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: rgb(225, 19, 163);
+    background-color: #8e24aa;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Confetti Effect */
+/* Add a hover effect */
+.button-text:hover {
+    transform: translateY(-3px);
+    background-color: #ab47bc;
+    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
 .confetti {
-    position: fixed;
+    position: absolute;
     top: -10px;
+    left: 50%;
     z-index: 9999;
-    animation: confettiFall ease-out forwards;
+    opacity: 0.8;
+    animation: confettiFall linear infinite;
     pointer-events: none;
 }
 
+/* Snowflake animation */
 @keyframes confettiFall {
     0% {
-        transform: translateY(-100vh) rotate(0deg);
+        transform: translateX(0) translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0;
+        transform: translateX(calc(-100vw + 200px)) translateY(100vh) rotate(720deg);
+        opacity: 0.5;
     }
 }

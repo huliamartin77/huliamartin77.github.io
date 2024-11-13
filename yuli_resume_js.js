@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Play sound and launch confetti
             playSound();
-            launchConfetti();
+            createSnowflake();
 
             // Revert button state after 1.5 seconds
             setTimeout(function () {
@@ -45,22 +45,26 @@ document.addEventListener('DOMContentLoaded', function () {
         audio.play();
     }
 
-    // Confetti animation function
-    function launchConfetti() {
-        const confettiCount = 100;
-        const confettiColors = ['#ff9f1c', '#2ec4b6', '#e71d36', '#ffbf69', '#8d99ae'];
-        
-        for (let i = 0; i < confettiCount; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-            confetti.style.left = `${Math.random() * 100}%`;
-            confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
-            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-            document.body.appendChild(confetti);
-
-            setTimeout(() => confetti.remove(), 5000);
-        }
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('sparkle');
+    
+        // Set random position, size, and animation duration
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.width = snowflake.style.height = Math.random() * 8 + 4 + 'px'; // Random sizes between 4px to 12px
+        snowflake.style.animationDuration = Math.random() * 5 + 5 + 's'; // Duration between 5s to 10s
+        snowflake.style.animationDelay = Math.random() * 3 + 's';
+    
+        document.body.appendChild(snowflake);
+    
+        // Remove the snowflake after it finishes falling
+        setTimeout(() => {
+            snowflake.remove();
+        }, 12000);
     }
+    
+    // Continuously generate snowflakes
+    setInterval(createSnowflake, 300);
+
 });
 
