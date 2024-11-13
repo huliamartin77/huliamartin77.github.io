@@ -1,18 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const guineaPigButton = document.getElementById('guineaPigButton');
+    const guineaPigButton = document.getElementById("menu-icon");
 
     if (guineaPigButton) {
         guineaPigButton.addEventListener('click', function () {
+            // Toggle navbar visibility
+            navbar.classList.toggle("active");
+            guineaPigButton.classList.toggle("active");
+
             // Open Instagram first
             openInstagram();
 
-            // Add animation and change button text
-            guineaPigButton.classList.add('animate-button');
-            guineaPigButton.innerHTML = 'Wheek Wheek! 🎉';
-
-            // Play sound and launch confetti
+            // Add animation, play sound, and create snowflakes
             playSound();
             createSnowflake();
+
+            // Change button text and style
+            guineaPigButton.classList.add('animate-button');
+            guineaPigButton.innerHTML = 'Wheek Wheek! 🎉';
 
             // Revert button state after 1.5 seconds
             setTimeout(function () {
@@ -21,12 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdulyS7DoJSGwK3jiUTN74-7KVuhyyRkrCA&usqp=CAU" alt="Guinea Pig">
                     <span class="button-text">CLICK ME</span>
                 `;
+                
+                // Check if the browser is Chrome
                 if (isChrome()) {
                     console.log('This code is running in Chrome.');
                 }
             }, 1500);
         });
     }
+});
 
     // Function to open Instagram page
     function openInstagram() {
@@ -39,13 +46,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    document.getElementById("menu-icon").addEventListener("click", function() {
-        const navbar = document.getElementById("navbar");
+    /*document.getElementById("menu-icon").addEventListener("click", function() {
+     *   const navbar = document.getElementById("navbar");
         const menuIcon = document.getElementById("menu-icon");
     
         navbar.classList.toggle("active");
         menuIcon.classList.toggle("active");
-    });
+    });*/
 
     // Function to play the custom sound effect
     function playSound() {
