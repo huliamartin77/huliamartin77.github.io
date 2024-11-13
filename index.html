@@ -66,24 +66,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Construct the message content
         let messageContent = "Someone just viewed your resume!";
-        if (visitorInfo) {
-            messageContent += `
-                IP Address: ${visitorInfo.ip}
-                Location: ${visitorInfo.city}, ${visitorInfo.region}, ${visitorInfo.country}
-                ISP: ${visitorInfo.isp}
-                Browser Info: ${navigator.userAgent}
-            `;
-        } else {
-            messageContent += "\nVisitor information could not be retrieved.";
-        }
+        let ip = visitorInfo ? visitorInfo.ip : 'N/A';
+        let city = visitorInfo ? visitorInfo.city : 'N/A';
+        let region = visitorInfo ? visitorInfo.region : 'N/A';
+        let country = visitorInfo ? visitorInfo.country : 'N/A';
+        let isp = visitorInfo ? visitorInfo.isp : 'N/A';
+        let browserInfo = navigator.userAgent;
 
         // Debugging: Check if the message content is properly constructed
         console.log("Constructed Message:", messageContent);
 
-        // Send email using EmailJS
+        // Send email using EmailJS with individual variables
         emailjs.send("service_mfeebaa", "template_tzyd5tf", {
             subject: "New Visitor Alert",
-            message: messageContent
+            message: messageContent,
+            ip: ip,
+            city: city,
+            region: region,
+            country: country,
+            isp: isp,
+            browserInfo: browserInfo
         })
         .then(function(response) {
             console.log("Email sent successfully!", response.status);
@@ -98,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sendEmailNotification();
     };
 });
+
 
 
 
