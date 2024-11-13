@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const guineaPigButton = document.getElementById("menu-icon");
     const navbar = document.getElementById("navbar");
     const navLinks = document.querySelectorAll('.navbar ul li a');
+    
 
     // Debugging logs to check if elements are loaded
     console.log("Page loaded");

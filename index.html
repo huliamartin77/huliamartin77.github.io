@@ -14,7 +14,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
         <!-- JavaScript File (Use defer to ensure it loads after the DOM is ready) -->
-        <script src="yulia_resume_js.js" defer></script>
+       <script src="yulia_resume_js.js" defer></script>
     </head>
 <body>
 <!-- Hamburger Menu Button -->
@@ -31,38 +31,77 @@
         <li><a href="contact.html">Contact</a></li>
     </ul>
 </nav>
-    <script>
-        // Initialize EmailJS with your public key
-        document.addEventListener("DOMContentLoaded", function() {
-            try {
-                emailjs.init("Jeg7QkMrDQbVTuo8N");
-                console.log("EmailJS initialized successfully.");
-            } catch (error) {
-                console.error("Failed to initialize EmailJS:", error);
-            }
-        });
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Initialize EmailJS
+    try {
+        emailjs.init("Jeg7QkMrDQbVTuo8N");
+        console.log("EmailJS initialized successfully.");
+    } catch (error) {
+        console.error("Failed to initialize EmailJS:", error);
+    }
 
-        // Function to send email notification
-        function sendEmailNotification() {
-            console.log("Attempting to send email...");
-            emailjs.send("service_mfeebaa", "template_tzyd5tf", {
-                user_email: "yuliamartin67@gmail.com",
-                subject: "New Visitor Alert",
-                message: "Someone just viewed your resume page!"
-            })
-            .then(function(response) {
-                console.log("Email sent successfully!", response.status, response.text);
-            })
-            .catch(function(error) {
-                console.error("Failed to send email:", error);
-            });
+    // Function to fetch visitor information
+    async function fetchVisitorInfo() {
+        try {
+            // Fetch visitor details using an IP service
+            const response = await fetch("https://ipwhois.app/json/");
+            if (!response.ok) throw new Error("Failed to fetch IP info");
+            const data = await response.json();
+            console.log("Visitor Info:", data);
+            return data;
+        } catch (error) {
+            console.error("Error fetching visitor info:", error);
+            return null;
+        }
+    }
+
+    // Function to send email notification
+    async function sendEmailNotification() {
+        console.log("Attempting to send email...");
+
+        // Fetch visitor information
+        const visitorInfo = await fetchVisitorInfo();
+
+        // Construct the message content
+        let messageContent = "Someone just viewed your resume!";
+        if (visitorInfo) {
+            messageContent += `
+                IP Address: ${visitorInfo.ip}
+                Location: ${visitorInfo.city}, ${visitorInfo.region}, ${visitorInfo.country}
+                ISP: ${visitorInfo.isp}
+                Browser Info: ${navigator.userAgent}
+            `;
+        } else {
+            messageContent += "\nVisitor information could not be retrieved.";
         }
 
-        // Send email notification when the page loads
-        window.onload = function() {
-            sendEmailNotification();
-        };
-    </script>
+        // Debugging: Check if the message content is properly constructed
+        console.log("Constructed Message:", messageContent);
+
+        // Send email using EmailJS
+        emailjs.send("service_mfeebaa", "template_tzyd5tf", {
+            subject: "New Visitor Alert",
+            message: messageContent
+        })
+        .then(function(response) {
+            console.log("Email sent successfully!", response.status);
+        })
+        .catch(function(error) {
+            console.error("Failed to send email:", error);
+        });
+    }
+
+    // Send email notification when the page loads
+    window.onload = function () {
+        sendEmailNotification();
+    };
+});
+
+
+
+</script>
     <header>
         <h1>Yulia Martin</h1>
         <p>Minneapolis, MN<br>
