@@ -1,4 +1,3 @@
-
 /* Reset margins and paddings */
 * {
     margin: 0;
@@ -6,27 +5,62 @@
     box-sizing: border-box;
 }
 
-/* Hamburger Menu Styling */
-.menu-icon {
-    position: fixed; /* Keeps it fixed at the top */
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
+/* General Body Styling */
+body {
+    font-family: 'UnifrakturCook', sans-serif;
+    line-height: 1.6;
+    color: #2D3748;
+    background: linear-gradient(to bottom, #F5F7FA, #E0E7FF);
+    padding: 25px;
 }
 
-/* Styling for the guinea pig image */
-.guinea-pig-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+/* Heading Styling */
+h1 {
+    color: #1D4ED8;
+    text-shadow: 2px 2px 8px rgba(29, 78, 216, 0.3);
+    margin-bottom: 20px;
+    font-size: 3em;
+}
+
+h2, h3 {
+    color: #3B82F6;
+    margin-bottom: 15px;
+}
+
+p, ul {
+    margin-bottom: 40px;
+}
+
+/* List Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #E879F9;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(232, 121, 249, 0.4);
+}
+
+a {
+    color: #3B82F6;
+    text-decoration: none;
+    border-bottom: 2px solid #3B82F6;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #1D4ED8;
 }
 
 /* Navbar Styling */
@@ -39,14 +73,20 @@
     background-color: #222;
     padding: 20px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    transition: right 0.3s ease;
-    z-index: 999;
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar.active {
+    right: 0;
 }
 
 .navbar ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .navbar ul li {
@@ -54,11 +94,10 @@
 }
 
 .navbar ul li a {
-    text-decoration: none;
     color: #ffffff;
     font-size: 18px;
     display: block;
-    padding: 10px 0;
+    padding: 10px;
     transition: color 0.3s ease;
 }
 
@@ -66,144 +105,84 @@
     color: #ffec8b;
 }
 
-/* Active state for the menu */
-.navbar.active {
-    right: 0;
+/* Hamburger Menu Button */
+.menu-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 10000;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .menu-icon {
-        width: 25px;
-    }xXxx
-
-    .navbar {
-        width: 200px;
-    }
-} 
-/* General Body Styling */
-body {
-    font-family: 'UnifrakturCook', sans-serif;
-    line-height: 1.6;
-    color: #2D3748; /* Dark gray for text */
-    background: linear-gradient(to bottom, #F5F7FA, #E0E7FF); /* Updated background gradient */
-    padding: 25px;
-    margin: 0;
+.guinea-pig-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
-/* Heading Styling */
-h1 {
-    color: #1D4ED8; /* Deep blue for main heading */
-    text-shadow: 2px 2px 8px rgba(29, 78, 216, 0.3);
-    margin-bottom: 20px;
-    font-size: 3em;
-}
-
-h2, h3 {
-    color: #3B82F6; /* Sky blue for subheadings */
-    margin-bottom: 15px;
-}
-
-/* Paragraph and List Styling */
-p, ul {
-    margin-bottom: 40px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-ul li {
-    background-color: #fff;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 2px solid #E879F9; /* Vibrant pink border */
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-ul li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(232, 121, 249, 0.4); /* Pink glow on hover */
-}
-
-a {
-    color: #3B82F6; /* Sky blue links */
-    text-decoration: none;
-    border-bottom: 2px solid #3B82F6;
-    transition: color 0.3s;
-}
-
-a:hover {
-    color: #1D4ED8; /* Darker blue on hover */
-}
-
+/* Button Styling */
 .guinea-pig-icon {
-    position: relative;
-    background: linear-gradient(135deg, #D1C4E9, #B3E5FC); /* Soft lavender to pastel blue */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #E879F9, #F97316);
     color: #fff;
     border: none;
     border-radius: 50px;
     padding: 20px 50px;
     font-size: 22px;
     cursor: pointer;
-    transition: background-color 0.5s, transform 0.3s ease-in-out, box-shadow 0.5s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    box-shadow: 0 15px 30px rgba(179, 229, 252, 0.3), inset 0 0 20px rgba(209, 196, 233, 0.5);
+    transition: background-color 0.4s, transform 0.3s ease-in-out, box-shadow 0.4s;
 }
 
 .guinea-pig-icon:hover {
-    background: linear-gradient(135deg, #B39DDB, #80DEEA); /* Lavender to soft teal on hover */
+    background: linear-gradient(135deg, #B39DDB, #80DEEA);
     transform: translateY(-8px) scale(1.08);
-    box-shadow: 0 25px 50px rgba(179, 157, 219, 0.6), inset 0 0 40px rgba(128, 222, 234, 0.5);
 }
 
-.guinea-pig-icon.clicked {
-    border: 3px solid #80DEEA; /* Soft teal border on click */
-    padding: 18px 48px;
-    animation: buttonBounce 0.6s ease-out;
-    background: linear-gradient(135deg, #CE93D8, #81D4FA); /* Pastel pink to soft blue */
-    box-shadow: 0 20px 40px rgba(129, 212, 250, 0.5), inset 0 0 30px rgba(206, 147, 216, 0.6);
+.button-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(236, 133, 205);
+    background-color: #d284e8;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Button Bounce Animation */
-@keyframes buttonBounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+.button-text:hover {
+    transform: translateY(-3px);
+    background-color: #ab47bc;
+    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Sparkle Effect */
+/* Confetti/Snowflake Styling */
 .sparkle {
     position: absolute;
     width: 10px;
     height: 10px;
-    background: radial-gradient(circle, #FFFFFF, #E0F7FA); /* Soft white-blue gradient for snow effect */
+    background: radial-gradient(circle, #FFFFFF, #E0F7FA);
     border-radius: 50%;
     animation: snowFall 8s linear infinite, sway 4s ease-in-out infinite;
-    pointer-events: none;
-    filter: drop-shadow(0 0 6px rgba(240, 248, 255, 0.6)); /* Soft glowing effect */
-    opacity: 0.8;
+    filter: drop-shadow(0 0 6px rgba(240, 248, 255, 0.6));
 }
 
-/* Falling animation to simulate snowflakes */
 @keyframes snowFall {
     0% {
-        transform: translateY(-10vh) translateX(0);
+        transform: translateY(-10vh);
         opacity: 0.8;
     }
     100% {
-        transform: translateY(110vh) translateX(calc(20vw * (random() - 0.5)));
+        transform: translateY(110vh);
         opacity: 0.5;
     }
 }
 
-/* Gentle swaying effect for drifting snowflakes */
 @keyframes sway {
     0%, 100% {
         transform: translateX(-5px);
@@ -213,78 +192,14 @@ a:hover {
     }
 }
 
-.guinea-pig-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center content horizontally */
-    justify-content: center; /* Center content vertically */
-    position: relative;
-    background: linear-gradient(135deg, #E879F9, #F97316);
-    color: #ffffff;
-    border: none;
-    border-radius: 50px;
-    padding: 20px 50px;
-    font-size: 22px;
-    cursor: pointer;
-    transition: background-color 0.4s, transform 0.3s ease-in-out, box-shadow 0.4s;
-    overflow: hidden;
-}
-
-.guinea-pig-icon img {
-    max-width: 80px; /* Set a fixed max-width */
-    max-height: 80px; /* Set a fixed max-height */
-    width: auto;
-    height: auto;
-    display: block;
-    margin: 0 auto; /* Centers the image horizontally */
-    object-fit: contain; /* Ensures the image scales properly */
-}
-
-.button-text {
-    z-index: 1;
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px 20px;
-    color: rgb(236, 133, 205);
-    background-color: #d284e8;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    display: inline-block;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-/* Add a hover effect */
-.button-text:hover {
-    transform: translateY(-3px);
-    background-color: #ab47bc;
-    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-.confetti {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    z-index: 9999;
-    opacity: 0.8;
-    animation: confettiFall linear infinite;
-    pointer-events: none;
-}
-
-/* Snowflake animation */
-@keyframes confettiFall {
-    0% {
-        transform: translateX(0) translateY(0) rotate(0deg);
-        opacity: 0;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-icon {
+        width: 25px;
     }
-    10% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(calc(-100vw + 200px)) translateY(100vh) rotate(720deg);
-        opacity: 0.5;
+
+    .navbar {
+        width: 200px;
     }
 }
+
