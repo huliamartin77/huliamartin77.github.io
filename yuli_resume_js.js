@@ -39,6 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    document.getElementById("menu-icon").addEventListener("click", function() {
+        const navbar = document.getElementById("navbar");
+        const menuIcon = document.getElementById("menu-icon");
+    
+        navbar.classList.toggle("active");
+        menuIcon.classList.toggle("active");
+    });
+
     // Function to play the custom sound effect
     function playSound() {
         const audio = new Audio('ESGuinea20Pig205_3new-sound.aif');
