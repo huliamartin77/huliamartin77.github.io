@@ -5,8 +5,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="yulia_resume_css.css">
     <script type="text/javascript" src="yulia_resume_js.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
+    <script>
+        // Initialize EmailJS with your public key
+        document.addEventListener("DOMContentLoaded", function() {
+            try {
+                emailjs.init("Jeg7QkMrDQbVTuo8N");
+                console.log("EmailJS initialized successfully.");
+            } catch (error) {
+                console.error("Failed to initialize EmailJS:", error);
+            }
+        });
+
+        // Function to send email notification
+        function sendEmailNotification() {
+            console.log("Attempting to send email...");
+            emailjs.send("service_mfeebaa", "template_tzyd5tf", {
+                user_email: "yuliamartin67@gmail.com",
+                subject: "New Visitor Alert",
+                message: "Someone just viewed your resume page!"
+            })
+            .then(function(response) {
+                console.log("Email sent successfully!", response.status, response.text);
+            })
+            .catch(function(error) {
+                console.error("Failed to send email:", error);
+            });
+        }
+
+        // Send email notification when the page loads
+        window.onload = function() {
+            sendEmailNotification();
+        };
+    </script>
     <header>
         <h1>Yulia Martin</h1>
         <p>Minneapolis, MN<br>
