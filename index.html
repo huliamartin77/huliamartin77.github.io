@@ -88,13 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        let messageContent = `
-            Someone just viewed your resume!
-            IP Address: ${visitorInfo.ip}
-            Location: ${visitorInfo.city}, ${visitorInfo.region}, ${visitorInfo.country}
-            ISP: ${visitorInfo.isp}
-            Browser Info: ${navigator.userAgent}
-        `;
+        const messageContent = "Someone just viewed your resume!";
 
         console.log("Constructed Message:", messageContent);
 
