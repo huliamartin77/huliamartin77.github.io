@@ -89,10 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const messageContent = "Someone just viewed your resume!";
-
-        console.log("Constructed Message:", messageContent);
-
-        // Send email using EmailJS
         emailjs.send("service_mfeebaa", "template_tzyd5tf", {
             subject: "New Visitor Alert",
             message: messageContent,
