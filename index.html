@@ -14,23 +14,36 @@
         <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
         <!-- JavaScript File (Use defer to ensure it loads after the DOM is ready) -->
-       <script src="yulia_resume_js.js" defer></script>
-    </head>
-<body>
-<!-- Hamburger Menu Button -->
-<div class="menu-icon" id="menu-icon">
-    <img src="https://www.aiscribbles.com/img/variant/large-preview/34002/?v=44756d" alt="Guinea Pig" class="guinea-pig-image">
-</div>
+        <script src="./yulia_resume_js.js"></script>
 
-<!-- Navigation Menu -->
-<nav class="navbar" id="navbar">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="./about.html">About Me</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
+        <div class="chatbot-container">
+            <div class="chatbot-header">
+                <img src="https://www.aiscribbles.com/img/variant/large-preview/34002/?v=44756d" alt="Guinea Pig" class="chatbot-avatar">
+                <h2>Chat with Me!</h2>
+            </div>
+            <div id="chat-box">
+                <div id="chat-log"></div>
+            </div>
+            <textarea id="user-input" placeholder="Type your message..."></textarea>
+            <button id="send-btn">Send</button>
+        </div>
+        <script src="chatbot.js" defer></script>
+    </head>
+    <body>
+        <!-- Hamburger Menu Button -->
+        <div class="menu-icon" id="menu-icon">
+            <img src="https://www.aiscribbles.com/img/variant/large-preview/34002/?v=44756d" alt="Guinea Pig" class="guinea-pig-image">
+        </div>
+    
+        <!-- Navigation Menu -->
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {

@@ -7,11 +7,12 @@
 
 /* General Body Styling */
 body {
-    font-family: 'UnifrakturCook', sans-serif;
-    line-height: 1.6;
-    color: #2D3748;
+    font-family: 'Arial', sans-serif;
     background: linear-gradient(to bottom, #F5F7FA, #E0E7FF);
+    color: #2D3748;
+    line-height: 1.6;
     padding: 25px;
+    margin: 0;
 }
 
 /* Heading Styling */
@@ -25,10 +26,6 @@ h1 {
 h2, h3 {
     color: #3B82F6;
     margin-bottom: 15px;
-}
-
-p, ul {
-    margin-bottom: 40px;
 }
 
 /* List Styling */
@@ -55,7 +52,6 @@ ul li:hover {
 a {
     color: #3B82F6;
     text-decoration: none;
-    border-bottom: 2px solid #3B82F6;
     transition: color 0.3s;
 }
 
@@ -74,19 +70,15 @@ a:hover {
     padding: 20px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     transition: right 0.3s ease-in-out;
-    z-index: 9999;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .navbar.active {
     right: 0;
-}
-
-.navbar ul {
-    list-style: none;
 }
 
 .navbar ul li {
@@ -94,11 +86,10 @@ a:hover {
 }
 
 .navbar ul li a {
-    color: #ffffff;
+    color: #fff;
     font-size: 18px;
-    display: block;
     padding: 10px;
-    transition: color 0.3s ease;
+    display: block;
 }
 
 .navbar ul li a:hover {
@@ -113,7 +104,7 @@ a:hover {
     width: 50px;
     height: 50px;
     cursor: pointer;
-    z-index: 10000;
+    z-index: 1100;
 }
 
 .guinea-pig-image {
@@ -123,45 +114,100 @@ a:hover {
     border-radius: 50%;
 }
 
-/* Button Styling */
-.guinea-pig-icon {
+/* Chatbot Container Styling */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    max-height: 500px;
+    background-color: #fff7f5;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    z-index: 1200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 3px solid #F97316; /* Accent border */
+}
+
+/* Chatbot Header Styling */
+.chatbot-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #E879F9, #F97316);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 20px 50px;
-    font-size: 22px;
-    cursor: pointer;
-    transition: background-color 0.4s, transform 0.3s ease-in-out, box-shadow 0.4s;
+    margin-bottom: 15px;
 }
 
-.guinea-pig-icon:hover {
-    background: linear-gradient(135deg, #B39DDB, #80DEEA);
-    transform: translateY(-8px) scale(1.08);
+.chatbot-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 3px solid #E879F9; /* Lavender border */
 }
 
-.button-text {
+.chatbot-header h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: bold;
-    color: rgb(236, 133, 205);
-    background-color: #d284e8;
+    color: #E879F9;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Chatbox Styling */
+#chat-box {
+    width: 100%;
+    height: 250px;
+    overflow-y: auto;
+    background-color: #FFF0F6;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#chat-log {
+    font-family: 'Roboto', sans-serif;
+    color: #2D3748;
+}
+
+textarea#user-input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
     border-radius: 8px;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    border: 2px solid #E879F9;
+    margin-bottom: 10px;
 }
 
-.button-text:hover {
-    transform: translateY(-3px);
-    background-color: #ab47bc;
-    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.3);
+button#send-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #E879F9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Confetti/Snowflake Styling */
+button#send-btn:hover {
+    background-color: #F97316;
+}
+
+/* Scrollbar Styling */
+#chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background-color: #E879F9;
+    border-radius: 4px;
+}
+
+/* Snowflake Effect */
 .sparkle {
     position: absolute;
     width: 10px;
@@ -169,37 +215,31 @@ a:hover {
     background: radial-gradient(circle, #FFFFFF, #E0F7FA);
     border-radius: 50%;
     animation: snowFall 8s linear infinite, sway 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 6px rgba(240, 248, 255, 0.6));
+    pointer-events: none;
 }
 
+/* Falling and swaying animations */
 @keyframes snowFall {
-    0% {
-        transform: translateY(-10vh);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(110vh);
-        opacity: 0.5;
-    }
+    0% { transform: translateY(-10vh); opacity: 0.8; }
+    100% { transform: translateY(110vh); opacity: 0.5; }
 }
 
 @keyframes sway {
-    0%, 100% {
-        transform: translateX(-5px);
-    }
-    50% {
-        transform: translateX(5px);
-    }
+    0%, 100% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .menu-icon {
-        width: 25px;
+        width: 40px;
+        height: 40px;
     }
-
     .navbar {
         width: 200px;
+    }
+    .chatbot-container {
+        width: 300px;
     }
 }
 
