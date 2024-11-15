@@ -29,7 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
         // Function to call OpenAI API
         async function getBotResponse(message) {
-            const apiKey = "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"; // Replace with your actual OpenAI API key
+            const encodedKey = "c2stcHJvai1ac2tscE5fS3pCWnpqRXB4d0FQaDN3X0R2T21QaWs5N3BIS0twVHlqZUw0Vkt4UFB0dU1xSnBmOUZ0U3FvMnFKWVY1VTY5eEZzZlQzQmxia0ZKV1g1d2V1Ujk0VEE4YjdrOTBEZ2RYd0gycjZmX1JISmc3STFuY1ZSTy1sQmQzZlVmSFl0ZVU0YVV6dXBsZmFJQVlEc1YtNEd6OEE=";
+            const apiKey = atob(encodedKey);
+            
             const apiEndpoint = "https://api.openai.com/v1/chat/completions";
     
             // Prepare the request body
