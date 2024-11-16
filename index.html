@@ -16,10 +16,13 @@
         <!-- JavaScript File (Use defer to ensure it loads after the DOM is ready) -->
         <script src="./yulia_resume_js.js"></script>
 
-        <div class="chatbot-container">
+        <div class="chatbot-container" id="chatbot-container">
             <div class="chatbot-header">
                 <img src="https://www.aiscribbles.com/img/variant/large-preview/34002/?v=44756d" alt="Guinea Pig" class="chatbot-avatar">
                 <h2>Chat with Me!</h2>
+                <!-- Close Button 
+                <button class="close-btn" onclick="toggleChatbot()">-</button>-->
+                <button id="toggle-chat-btn" class="toggle-chat-btn" onclick="toggleChatbot()" style="display: none;">💬</button>
             </div>
             <div id="chat-box">
                 <div id="chat-log"></div>
@@ -27,11 +30,11 @@
             <textarea id="user-input" placeholder="Type your message..."></textarea>
             <button id="send-btn">Send</button>
         </div>
-        <script src="chatbot.js" defer></script>
+        <script src="yuli_resume_js.js" defer></script>
     </head>
     <body>
         <!-- Hamburger Menu Button -->
-        <div class="menu-icon" id="menu-icon">
+        <div class="menu-icon" id="menu-icon" onclick="toggleNavbar()">
             <img src="https://www.aiscribbles.com/img/variant/large-preview/34002/?v=44756d" alt="Guinea Pig" class="guinea-pig-image">
         </div>
     
@@ -46,6 +49,31 @@
         </nav>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
+const chatbotContainer = document.getElementById("chatbot-container");
+    const toggleChatButton = document.getElementById("toggle-chat-btn");
+function toggleChatbot() {
+        if (chatbotContainer.classList.contains("minimized")) {
+            chatbotContainer.classList.remove("minimized");
+            toggleChatButton.style.display = "none";
+        } else {
+            chatbotContainer.classList.add("minimized");
+            toggleChatButton.style.display = "block";
+        }
+    }
+        function toggleNavbar() {
+        const navbar = document.getElementById("navbar");
+        const menuIcon = document.getElementById("menu-icon");
+    
+        // Check if both elements exist
+        if (navbar && menuIcon) {
+            navbar.classList.toggle("active");
+            menuIcon.classList.toggle("active");
+            console.log("Hamburger button clicked");
+        } else {
+            console.error("Menu Icon or Navbar not found");
+        }
+    }
+
 document.addEventListener("DOMContentLoaded", function () {
     // Initialize EmailJS
     try {
@@ -251,14 +279,5 @@ document.addEventListener("DOMContentLoaded", function () {
             <li>Enhanced QA processes to improve software quality and project timelines.</li>
         </ul>
     </section>
-
-<!-- Magical Guinea Pig Button
-<button id="guineaPigButton" class="guinea-pig-icon">
-    <img src="https://www.aiscribbles.com/img/variant/large-preview/34002/?v=44756d" alt="Guinea Pig">
-    <span class="button-text">CLICK ME</span>
-    <div class="sparkle" style="top: 10px; left: 30px;"></div>
-    <div class="sparkle" style="top: 20px; right: 50px;"></div>
-    <div class="sparkle" style="bottom: 15px; left: 40px;"></div>
-</button>-->
 </body>
 </html>

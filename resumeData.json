@@ -1,0 +1,42 @@
+{
+    "summary": "Experienced Software QA Specialist with a proven ability to enhance software quality through comprehensive testing strategies. Skilled in automation, Agile practices, and driving continuous improvement in fast-paced environments.",
+    "skills": "Python, JavaScript, C#, SQL, Selenium, Appium, Playwright, Postman, Cypress, TestRail, Jira",
+    "expertise": {
+      "automation_scripting": "Skilled in using Selenium, Appium, and Cypress for test automation; proficient in Python, C#, and JavaScript.",
+      "testing_analysis": "Extensive experience in API testing with Postman; adept at load, stress, and performance testing to ensure system reliability.",
+      "agile_management": "Expertise in Agile and Scrum methodologies; experienced with Jira and TestRail for project tracking and test management.",
+      "team_collaboration": "Effective communicator with experience using Slack, Microsoft Teams, and Zoom for team coordination and remote work."
+    },
+    "experience": {
+      "cdk_global": "Led C# test frameworks using Selenium and SpecFlow, conducted Scrum meetings, managed QA team activities, and trained teams in automation at CDK Global.",
+      "mark43": "Built QA teams, established robust testing frameworks, implemented QA metrics, managed multiple QA teams, and led migrations and CRM projects at Mark43.",
+      "amada_america": "Developed C#/Selenium test automation frameworks, conducted mobile testing, managed defect tracking, and led QA teams at Amada America.",
+      "agosto": "Developed mobile automation frameworks using Appium and Python for iOS and Android platforms, managed test runs using TestRail, and collaborated closely with cross-functional teams.",
+      "bleachr": "Built automation frameworks using Selenium with C#, created detailed test documentation, and coordinated testing efforts with external teams at Bleachr.",
+      "yaengage": "Led comprehensive testing of web and mobile applications, developed test plans, and implemented automated scripts using Visual Studio at YAEngage.",
+      "kiko_labs": "Conducted extensive testing of mobile educational games on Android and iOS, designed test cases for regression testing, and collaborated with development teams.",
+      "iq_labs": "Tested photo-sharing applications, recommended enhancements, and focused on optimizing user experience across web and mobile platforms."
+    },
+    "education": "Graduated from the University of Minnesota with a focus on Computer Science and Software Quality Assurance.",
+    "certifications": [
+      "CompTIA Security+ (2023)",
+      "Advanced Computer Forensics",
+      "Cloud Computing Security",
+      "Database Evaluations (AppDetectivePro)",
+      "Dynamic Testing (HPE WebInspect)",
+      "Software Assurance Executive Course",
+      "Software Quality Assurance (Portnov Computer School, 2012)"
+    ],
+    "achievements": [
+      "Reduced manual testing efforts through innovative QA automation strategies.",
+      "Managed and trained diverse teams, fostering effective collaboration in both remote and in-person settings.",
+      "Enhanced testing processes and methodologies, improving project efficiency and software quality."
+    ],
+    "hobbies": "Exploring new technologies, automation tools, and caring for my 14 guinea pigs. Follow my pets' adventures on Instagram @holisticguinea.",
+    "contact": {
+      "email": "yuliamartin67@gmail.com",
+      "phone": "(612) 300-7597",
+      "location": "Minneapolis, MN"
+    }
+  }
+  

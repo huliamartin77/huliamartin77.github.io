@@ -1,160 +1,127 @@
 document.addEventListener('DOMContentLoaded', function () {
     const menuIcon = document.getElementById("menu-icon");
     const navbar = document.getElementById("navbar");
-    console.log("Menu icon clicked");
+    const sendBtn = document.getElementById("send-btn");
+    const userInput = document.getElementById("user-input");
+    const chatLog = document.getElementById("chat-log");
+    const chatbotContainer = document.getElementById("chatbot-container");
 
-    // Debugging logs
-    console.log("Page loaded");
-    console.log("Menu Icon:", menuIcon);
-    console.log("Navbar:", navbar);
+    console.log("Chatbot script initialized");
 
-    // Check if elements exist
-    if (!menuIcon || !navbar) {
-        console.error("Menu icon or navbar element not found.");
+    // Toggle Chatbot
+    function toggleChatbot() {
+        if (chatbotContainer.classList.contains("minimized")) {
+            console.log("Opening chatbot");
+            chatbotContainer.classList.remove("minimized");
+        } else {
+            console.log("Minimizing chatbot");
+            chatbotContainer.classList.add("minimized");
+        }
+    }
+
+    // Function to display messages
+    function addMessage(sender, message) {
+        const messageDiv = document.createElement("div");
+        messageDiv.textContent = `${sender}: ${message}`;
+        chatLog.appendChild(messageDiv);
+        chatLog.scrollTop = chatLog.scrollHeight;
+        console.log(`Message added from ${sender}: ${message}`);
+    }
+
+    async function getBotResponse(message) {
+        console.log("Sending message to server:", message);
+        try {
+            const response = await fetch('http://localhost:8080/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message })
+            });
+    
+            console.log("Received response status:", response.status);
+    
+            if (!response.ok) {
+                console.error('Error with API response:', response.statusText);
+                return "Oops! Something went wrong. Please try again.";
+            }
+    
+            const data = await response.json();
+            console.log("Received data from server:", data);
+            return data.response || "Sorry, I couldn't get a response.";
+        } catch (error) {
+            console.error("Error fetching response:", error);
+            return "Sorry, I encountered an error.";
+        }
+    }
+
+// Declare the flag to ensure greeting happens only once
+let hasGreeted = false;
+
+// Function to greet the user when the chatbox is opened
+function greetUser() {
+    if (!hasGreeted) {
+        addMessage("Yulia's Resume Elves 🐹🎄", "✨ Hi! We are the magical resume elves! 🎅📜 Ask us anything about Yulia's resume, and we'll be happy to help! 🎁😊");
+        hasGreeted = true; // Set the flag to true after greeting
+    }
+}
+
+// Greet the user immediately when the chatbox is loaded
+document.addEventListener('DOMContentLoaded', function () {
+    greetUser(); // Greet the user as soon as the chatbox loads
+});
+
+// Event listener for sending messages
+sendBtn.addEventListener("click", async function () {
+    const message = userInput.value.trim();
+    if (message === "") {
+        console.log("No message entered");
         return;
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const sendBtn = document.getElementById("send-btn");
-        const userInput = document.getElementById("user-input");
-        const chatLog = document.getElementById("chat-log");
-    
-        // Function to display messages in the chat log
-        function addMessage(sender, message) {
-            const messageDiv = document.createElement("div");
-            messageDiv.textContent = `${sender}: ${message}`;
-            chatLog.appendChild(messageDiv);
-            chatLog.scrollTop = chatLog.scrollHeight;
-        }
-    
-        // Function to call OpenAI API
-        async function getBotResponse(message) {
-            const encodedKey = "c2stcHJvai1ac2tscE5fS3pCWnpqRXB4d0FQaDN3X0R2T21QaWs5N3BIS0twVHlqZUw0Vkt4UFB0dU1xSnBmOUZ0U3FvMnFKWVY1VTY5eEZzZlQzQmxia0ZKV1g1d2V1Ujk0VEE4YjdrOTBEZ2RYd0gycjZmX1JISmc3STFuY1ZSTy1sQmQzZlVmSFl0ZVU0YVV6dXBsZmFJQVlEc1YtNEd6OEE=";
-            const apiKey = atob(encodedKey);
-            
-            const apiEndpoint = "https://api.openai.com/v1/chat/completions";
-    
-            // Prepare the request body
-            const requestBody = {
-                model: "gpt-3.5-turbo",
-                messages: [{ role: "user", content: message }],
-                max_tokens: 150,
-                temperature: 0.7
-            };
-    
-            try {
-                // Make the API call
-                const response = await fetch(apiEndpoint, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify(requestBody)
-                });
-    
-                // Check if the response is OK
-                if (!response.ok) {
-                    console.error("Error with API response:", response.statusText);
-                    return "Oops! Something went wrong. Please try again.";
-                }
-    
-                const data = await response.json();
-                if (data.choices && data.choices.length > 0) {
-                    const botMessage = data.choices[0].message.content;
-                    return botMessage.trim();
-                } else {
-                    console.error("No response from ChatGPT:", data);
-                    return "Sorry, I couldn't get a response.";
-                }
-            } catch (error) {
-                console.error("Error fetching response:", error);
-                return "Sorry, I encountered an error.";
-            }
-        }
-    
-        // Event listener for the Send button
-        sendBtn.addEventListener("click", async function () {
-            const message = userInput.value.trim();
-            if (message === "") return;
-    
-            // Display the user's message
-            addMessage("You", message);
-            userInput.value = "";
-    
-            // Fetch the bot's response and display it
-            const botResponse = await getBotResponse(message);
-            addMessage("Bot", botResponse);
-        });
-    
-        // Event listener for pressing "Enter" to send the message
-        userInput.addEventListener("keypress", async function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                sendBtn.click();
-            }
-        });
-    });
-    
+    // Add user's message to the chat
+    addMessage("You", message);
+    userInput.value = "";
 
-
-    // Function to play sound
-    function playSound() {
-        try {
-            const audio = new Audio('https://www.soundjay.com/button/beep-07.mp3');
-            audio.play();
-        } catch (error) {
-            console.error("Error playing sound:", error);
-        }
-    }
-
-    // Function to create snowflakes
-    function createSnowflake() {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('confetti');
-        snowflake.style.left = Math.random() * 100 + 'vw';
-        document.body.appendChild(snowflake);
-
-        // Remove snowflake after animation
-        setTimeout(() => snowflake.remove(), 3000);
-    }
-
-    // Function to toggle navbar and animate button
-    function toggleMenu() {
-        console.log("Hamburger button clicked");
-        navbar.classList.toggle("active");
-        guineaPigButton.classList.toggle("active");
-
-        // Play sound and create snowflakes
-        playSound();
-        createSnowflake();
-
-        // Change button text and style
-        guineaPigButton.classList.add('animate-button');
-        guineaPigButton.innerHTML = 'Wheek Wheek! 🎉';
-
-        // Revert button state after 1.5 seconds
-        setTimeout(() => {
-            guineaPigButton.classList.remove('animate-button');
-            guineaPigButton.innerHTML = `
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdulyS7DoJSGwK3jiUTN74-7KVuhyyRkrCA&usqp=CAU" alt="Guinea Pig">
-                <span class="button-text">CLICK ME</span>
-            `;
-        }, 1500);
-    }
-
-    // Event listener for hamburger button
-    guineaPigButton.addEventListener('click', toggleMenu);
-
-    // Event listeners for navigation links to close the menu
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            console.log("Navigation link clicked");
-            navbar.classList.remove("active");
-            guineaPigButton.classList.remove("active");
-        });
-    });
+    console.log("Fetching bot response...");
+    const botResponse = await getBotResponse(message);
+    addMessage("Yulia's Resume Elves 🐹", botResponse);
 });
 
 
+    // Press "Enter" to send a message
+    userInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            console.log("Enter key pressed");
+            sendBtn.click();
+        }
+    });
+
+    // Function to display messages
+    function addMessage(sender, message) {
+    const messageDiv = document.createElement("div");
+
+    // Customize the sender names
+    const senderName = sender === "You" ? "You" : "Yulia's Resume Elves";
+
+    messageDiv.textContent = `${senderName}: ${message}`;
+    chatLog.appendChild(messageDiv);
+    chatLog.scrollTop = chatLog.scrollHeight;
+    console.log(`Message added from ${senderName}: ${message}`);
+}
+
+    // Minimize chatbot on clicking outside
+    document.addEventListener("click", function (event) {
+        const isClickInsideChatbot = chatbotContainer.contains(event.target);
+        const isClickOnSendBtn = sendBtn.contains(event.target);
+
+        if (!isClickInsideChatbot && !isClickOnSendBtn) {
+            console.log("Click outside chatbot detected. Minimizing...");
+            chatbotContainer.classList.add("minimized");
+        }
+    });
+
+    console.log("All event listeners attached");
+});
 
