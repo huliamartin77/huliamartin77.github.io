@@ -9,7 +9,10 @@ const app = express();
 //const PORT = process.env.PORT || 8080;
 // Enable CORS for all requests
 app.use((req, res, next) => {
-    const allowedOrigins = ['https://huliamartin77.github.io', 'https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app'];
+    const allowedOrigins = [
+        'https://huliamartin77.github.io',
+        'https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app'
+    ];
     const origin = req.headers.origin;
 
     if (allowedOrigins.includes(origin)) {
