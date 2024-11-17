@@ -5,21 +5,22 @@ import fs from 'fs';
 
 dotenv.config();
 
-// Enable CORS before any other middleware
+// Enable CORS for all requests
 app.use((req, res, next) => {
-    console.log("Origin Received:", req.headers.origin);
     const allowedOrigins = [
         'https://huliamartin77.github.io',
-        'https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app'
+        'https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app',
+        'https://huliamartin77-github-fr2r68ejf-yulia-martins-projects.vercel.app'
     ];
     const origin = req.headers.origin;
 
-    if (allowedOrigins.includes(origin)) {
+    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
         res.setHeader('Access-Control-Allow-Origin', origin);
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-        res.setHeader('Access-Control-Allow-Credentials', 'true');
     }
+
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
 
     if (req.method === 'OPTIONS') {
         return res.sendStatus(204);
