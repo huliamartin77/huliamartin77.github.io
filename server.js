@@ -10,24 +10,26 @@ app.use((req, res, next) => {
     const allowedOrigins = [
         'https://huliamartin77.github.io',
         'https://huliamartin77-github-io.vercel.app',
-        'https://huliamartin77-github-fr2r68ejf-yulia-martins-projects.vercel.app'
+        'https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app',
+        'https://huliamartin77-github-fr2r68ejf-yulia-martins-projects.vercel.app',
+        'https://huliamartin77-github-4xh6dgqbn-yulia-martins-projects.vercel.app'
     ];
     const origin = req.headers.origin;
 
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
     } else {
-        res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins for now
+        res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins for testing
     }
-
+    
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-
+    
+    // Handle preflight requests
     if (req.method === 'OPTIONS') {
+        res.setHeader('Access-Control-Max-Age', '86400'); // Cache preflight response for 1 day
         return res.sendStatus(204);
     }
-
     next();
 });
 
