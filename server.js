@@ -9,12 +9,20 @@ const app = express();
 //const PORT = process.env.PORT || 8080;
 // Enable CORS for all requests
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    const allowedOrigins = ['https://huliamartin77.github.io', 'https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app'];
+    const origin = req.headers.origin;
+
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
     if (req.method === 'OPTIONS') {
         return res.sendStatus(204);
     }
+
     next();
 });
 // Serve static files (like HTML, CSS, JS) from the current directory
