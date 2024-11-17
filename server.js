@@ -17,13 +17,13 @@ app.use((req, res, next) => {
 
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
     }
 
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
     if (req.method === 'OPTIONS') {
-        return res.sendStatus(204);
+        return res.sendStatus(204); // Allow preflight requests
     }
 
     next();
@@ -44,7 +44,7 @@ app.use(express.json());
 app.post('/api/chat', async (req, res) => {
     const userMessage = req.body.message;
     const apiKey = process.env.OPENAI_API_KEY;
-    
+
     // Check if API key is available
     if (!apiKey) {
         console.error("API key is missing");
