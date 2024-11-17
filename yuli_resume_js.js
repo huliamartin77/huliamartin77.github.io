@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     async function getBotResponse(message) {
         console.log("Sending message to server:", message);
         try {
-            const response = await fetch('https://huliamartin77-github-ovjx6tct2-yulia-martins-projects.vercel.app/api/chat', {
+            const response = await fetch('https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
