@@ -6,8 +6,14 @@ import fs from 'fs';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8080;
-
+//const PORT = process.env.PORT || 8080;
+// Enable CORS for all requests
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
 // Serve static files (like HTML, CSS, JS) from the current directory
 app.use(express.static('.'));
 
@@ -172,9 +178,9 @@ if (lowerCaseMessage.includes("current projects")) {
     }
 });
 
-app.listen(PORT, () => {
+/*app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
-});
+});*/
 
 export default app;
 
