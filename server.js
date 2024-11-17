@@ -9,13 +9,15 @@ dotenv.config();
 app.use((req, res, next) => {
     const allowedOrigins = [
         'https://huliamartin77.github.io',
-        'https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app',
+        'https://huliamartin77-github-io.vercel.app',
         'https://huliamartin77-github-fr2r68ejf-yulia-martins-projects.vercel.app'
     ];
     const origin = req.headers.origin;
 
-    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+    if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
+    } else {
+        res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins for now
     }
 
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
