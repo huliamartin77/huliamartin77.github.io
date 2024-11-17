@@ -6,7 +6,7 @@ import fs from 'fs';
 dotenv.config();
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 // Serve static files (like HTML, CSS, JS) from the current directory
 app.use(express.static('.'));
@@ -175,6 +175,8 @@ if (lowerCaseMessage.includes("current projects")) {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+export default app;
 
 
 
