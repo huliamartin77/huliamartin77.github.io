@@ -5,10 +5,9 @@ import fs from 'fs';
 
 dotenv.config();
 
-const app = express();
-//const PORT = process.env.PORT || 8080;
-// Enable CORS for all requests
+// Enable CORS before any other middleware
 app.use((req, res, next) => {
+    console.log("Origin Received:", req.headers.origin);
     const allowedOrigins = [
         'https://huliamartin77.github.io',
         'https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app'
@@ -23,11 +22,13 @@ app.use((req, res, next) => {
     }
 
     if (req.method === 'OPTIONS') {
-        return res.sendStatus(204); // Allow preflight requests
+        return res.sendStatus(204);
     }
 
     next();
 });
+
+const app = express();
 // Serve static files (like HTML, CSS, JS) from the current directory
 app.use(express.static('.'));
 
@@ -161,13 +162,13 @@ if (lowerCaseMessage.includes("current projects")) {
     try {
         console.log("Sending request to OpenAI API with body:", requestBody);
 
-        const response = await fetch(apiEndpoint, {
+        const response = await fetch('https://huliamartin77-github-io-git-main-yulia-martins-projects.vercel.app/api/chat', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(requestBody)
+            mode: 'cors',
+            body: JSON.stringify({ message })
         });
 
         const data = await response.json();
