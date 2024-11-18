@@ -7,8 +7,11 @@ dotenv.config();
 
 const app = express();
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
 // Enable CORS for all requests
-app.use((req, res, next) => {
+const allowCors = (fn) => async (req, res) => {
     const allowedOrigins = [
         'https://huliamartin77.github.io',
         'https://huliamartin77-github-io.vercel.app',
@@ -18,26 +21,24 @@ app.use((req, res, next) => {
     ];
     const origin = req.headers.origin;
 
-    // Allow the origin if it's in the allowed list
+    // Check if the origin is in the allowed list
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
     } else {
         res.setHeader('Access-Control-Allow-Origin', '*');
     }
 
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
 
     // Handle preflight requests
     if (req.method === 'OPTIONS') {
-        console.log('Preflight request detected');
-        res.setHeader('Access-Control-Max-Age', '86400'); // Cache preflight response for a day
-        return res.sendStatus(204);
+        return res.status(200).end();
     }
 
-    next();
-});
+    return await fn(req, res);
+};
 // Serve static files (like HTML, CSS, JS) from the current directory
 app.use(express.static('.'));
 
@@ -202,8 +203,11 @@ if (lowerCaseMessage.includes("current projects")) {
     }
 });
 
-export default app;
+// Wrap your route with the CORS handler
+app.post('/api/chat', allowCors(chatHandler));
 
+// Export the app for Vercel
+export default app;
 
 
 
